@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -137,6 +139,24 @@ fun MainScreen(
                 productName = ""
                 productQuantity = ""
             }) { Text("Clear") }
+        }
+
+        LazyColumn(
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        ) {
+            val list = if (searching) searchResults else allProducts
+            item {
+                TitleRow(head1 = "ID", head2 = "Product", head3 = "Quantity")
+            }
+            items(list) { product ->
+                ProductRow(
+                    id = product.id,
+                    name = product.productName,
+                    quantity = product.quantity
+                )
+            }
         }
     }
 }
