@@ -98,13 +98,13 @@ fun MainScreen(
         modifier = modifier.fillMaxWidth()
     ) {
         CustomTextField(
-            title = "Product Name",
+            title = "Название товара",
             textState = productName,
             onTextChange = onProductTextChange,
             keyboardType = KeyboardType.Text
         )
         CustomTextField(
-            title = "Quantity",
+            title = "Количество",
             textState = productQuantity,
             onTextChange = onQuantityTextChange,
             keyboardType = KeyboardType.Number
@@ -122,23 +122,23 @@ fun MainScreen(
                     )
                     searching = false
                 }
-            }) { Text("Add") }
+            }) { Text("Добавить") }
 
             Button(onClick = {
                 searching = true
                 viewModel.findProduct(productName)
-            }) { Text("Search") }
+            }) { Text("Найти") }
 
             Button(onClick = {
                 searching = false
                 viewModel.deleteProduct(productName)
-            }) { Text("Delete") }
+            }) { Text("Удалить") }
 
             Button(onClick = {
                 searching = false
                 productName = ""
                 productQuantity = ""
-            }) { Text("Clear") }
+            }) { Text("Очистить") }
         }
 
         LazyColumn(
@@ -148,7 +148,7 @@ fun MainScreen(
         ) {
             val list = if (searching) searchResults else allProducts
             item {
-                TitleRow(head1 = "ID", head2 = "Product", head3 = "Quantity")
+                TitleRow(head1 = "ID", head2 = "Товар", head3 = "Кол-во")
             }
             items(list) { product ->
                 ProductRow(
